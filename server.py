@@ -58,21 +58,56 @@ def index():
         
         print("queryName : ", queryName)
         
+        a,b = queryName.split("-")
+        
+        print ("a:", a)
+        print ("b:", b)
+        
+        TP = 0
+        FP = 0
+        FN = 0
+    
+        
         for id in ids:
             
             retrievedName = img_path[id].__str__()
             
             print("Retrieved: ", retrievedName)
             
-            if retrievedName.find(queryName) != -1:
+            if retrievedName.find(a) != -1:
                 print("Similar!")
+                
+                TP = TP + 1
                 
             else:
                 print("Not similar")
+                
+                FP = FP + 1
+                
+                
             
             
         
         print("ini score hehe", scores)
+        
+        ######## CALCULATING PRECISION # #############################
+        
+        precision = TP/(TP + FP)
+        print("TP", TP)
+        print("FP", FP)
+        print("PRECISION : ", precision)
+        
+        ######## CALCULATING PRECISION # #############################
+        
+        recall = TP/(TP + FN)
+        print("RECALL :" , recall)
+        
+        ######## CALCULATING f1-SCORE # #############################
+        F1 = 2*((precision * recall)/(precision + recall))
+        print("F1 :" , F1)
+        
+        
+        
         
          
         
