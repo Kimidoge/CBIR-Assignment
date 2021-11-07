@@ -103,16 +103,10 @@ def index():
         print("RECALL :" , recall)
         
         ######## CALCULATING f1-SCORE # #############################
-        F1 = 2*((precision * recall)/(precision + recall))
+        F1 = round(2*((precision * recall)/(precision + recall)), 7)
         print("F1 :" , F1)
-        
-        
-        
-        
-         
-        
-        
-        return render_template("index.html", query_path = uploaded_img_path, scores = scores)
+
+        return render_template("results.html", query_path = uploaded_img_path, scores = scores, precision = precision, recall = recall, F1 = F1)
         
     else:
         return render_template("index.html")
